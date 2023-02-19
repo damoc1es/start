@@ -1,0 +1,80 @@
+@charset "UTF-8";
+@import url("https://rsms.me/inter/inter.css");
+:root {
+  --clr1: #1A1423;
+  --clr2: #E5BE9E;
+  --clr3: #3D314A;
+  --clr4: #B4A6AB;
+}
+
+body {
+  background-color: var(--clr1);
+  color: var(--clr2);
+  font-family: "Inter", sans-serif;
+  display: grid;
+  place-content: center;
+}
+
+#Tree {
+  list-style: none;
+  font-size: 1.5em;
+  padding-left: 1em;
+  --special-char: "⊧";
+  --state-string: "  x - disable";
+}
+#Tree.disabled {
+  --state-string: "  Esc - enable";
+  color: var(--clr3);
+}
+#Tree .backspace::before {
+  content: "⌫ - ";
+}
+#Tree .backspace.start {
+  color: var(--clr3);
+}
+#Tree li {
+  padding-bottom: 0.3em;
+}
+#Tree li::before {
+  content: counter(list-item) " " var(--special-char) " ";
+  font-family: "Fira Code", monospace;
+}
+#Tree li:has(a) {
+  --special-char: "→";
+}
+#Tree::after {
+  color: #B4A6AB;
+  content: var(--state-string);
+  font-size: 0.8em;
+}
+
+#Settings {
+  color: var(--clr4);
+  text-align: right;
+}
+#Settings #SettingsBtn {
+  cursor: pointer;
+}
+
+#Search {
+  width: min(98vw, 500px);
+}
+#Search input {
+  outline: none;
+  border: none;
+  border-bottom: 3px solid var(--clr3);
+  background: none;
+  color: var(--clr2);
+  font-size: 1.5em;
+  padding: 0.2em 0.6em 0.5em 0.6em;
+  font-family: "Inter", sans-serif;
+}
+#Search input::-moz-placeholder {
+  color: var(--clr3);
+}
+#Search input::placeholder {
+  color: var(--clr3);
+}
+#Search input:focus {
+  border-color: var(--clr4);
+}/*# sourceMappingURL=style.css.map */
