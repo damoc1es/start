@@ -70,6 +70,8 @@ main { width: min(98vw, 500px); }
         cursor: pointer;
         text-align: right;
         outline: none;
+        list-style: none;
+        user-select: none;
     }
 
     textarea {

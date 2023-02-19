@@ -76,6 +76,10 @@ main {
   cursor: pointer;
   text-align: right;
   outline: none;
+  list-style: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 #Settings textarea {
   margin: 1em 0;
