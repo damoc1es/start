@@ -39,6 +39,7 @@ main {
 #Tree .backspace {
   cursor: pointer;
   margin-bottom: 0.5em;
+  color: var(--clr4);
 }
 #Tree .backspace::before {
   content: "⌫ - ";
@@ -95,11 +96,15 @@ main {
 #Settings button {
   background-color: var(--clr4);
   font-family: "Inter", sans-serif;
+  font-weight: 600;
   color: var(--clr1);
   padding: 0.3em;
   border: 3px solid var(--clr3);
   margin-bottom: 1em;
   outline: none;
+}
+#Settings input {
+  accent-color: var(--clr2);
 }
 
 #Search input {

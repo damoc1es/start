@@ -1,7 +1,15 @@
-let txtarea = document.getElementById("LinksTextarea");
+let txtarea = document.getElementById("linksTextarea");
+let focusSetting = document.getElementById("reverseFocus");
+let linksDisabled = false;
+
 loadTextarea();
+loadSettings();
 
 let links = jsyaml.load(txtarea.value);
+if(focusSetting.checked) {
+    disableLinks();
+    document.getElementById('SearchInput').focus();
+}
 
 function loadTextarea() {
     var x = localStorage.getItem("startpageLinks");
@@ -9,23 +17,36 @@ function loadTextarea() {
         txtarea.value = x;
 }
 
-function saveTextarea() {
+function loadSettings() {
+    var x = localStorage.getItem("startpageFocusSetting");
+    focusSetting.checked = (x == "true");
+}
+
+function saveSettings() {
     console.log(txtarea);
     localStorage.setItem("startpageLinks", txtarea.value);
+    localStorage.setItem("startpageFocusSetting", focusSetting.checked);
     location.reload();
 }
 
-let disabled = false;
+
+function disableLinks() {
+    document.getElementById('Tree').classList.add("disabled");
+    linksDisabled = true;
+}
+
+function enableLinks() {
+    document.getElementById('Tree').classList.remove("disabled");
+    linksDisabled = false;
+    document.getElementById('SearchInput').blur();
+}
 
 document.documentElement.addEventListener('keydown', (event) => {
     if(event.key == 'x') {
-        document.getElementById('Tree').classList.add("disabled");
-        disabled = true;
+        disableLinks();
     }
     else if(event.key == 'Escape') {
-        document.getElementById('Tree').classList.remove("disabled");
-        disabled = false;
-        document.getElementById('SearchInput').blur();
+        enableLinks();
     }
 });
 
@@ -121,7 +142,7 @@ function backPath() {
 
 const possibleKeys = ['Backspace', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 document.documentElement.addEventListener('keydown', (event) => {
-    if(!disabled && possibleKeys.includes(event.key)) {
+    if(!linksDisabled && possibleKeys.includes(event.key)) {
         if(event.key == 'Backspace')
             backPath();
         else {

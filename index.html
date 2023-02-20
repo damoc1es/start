@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <title>★ Start</title>
+    <meta name="description" content="Customizable startpage.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css">
@@ -14,14 +15,15 @@
         <section id="Settings">
             <details>
                 <summary>settings</summary>
-                <textarea id="LinksTextarea"></textarea>
-                <button onclick="saveTextarea();">Save to Local Storage & Update</button>
+                <input type="checkbox" id="reverseFocus" name="reverseFocus"> <label for="reverseFocus">Reverse Focus on Start</label>
+                <textarea id="linksTextarea"></textarea>
+                <button onclick="saveSettings();">Save to Local Storage & Update</button>
             </details>
         </section>
 
         <section id="Search">
             <form action="https://duckduckgo.com/" method="get">
-                <input id="SearchInput" autocomplete="off" placeholder="λ" type="text" name="q">
+                <input id="SearchInput" aria-label="Search" autocomplete="off" placeholder="λ" type="text" name="q">
             </form>
         </section>
 
