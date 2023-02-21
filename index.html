@@ -16,7 +16,18 @@
             <details>
                 <summary>settings</summary>
                 <input type="checkbox" id="reverseFocus" name="reverseFocus"> <label for="reverseFocus">Reverse Focus on Start</label>
-                <textarea id="linksTextarea"></textarea>
+                <textarea id="linksTextarea">- some links:
+    - GitHub: 'https://github.com/damoc1es/start'
+    - another set, nested:
+        - Google: 'https://google.com'
+        - Reddit: 'https://www.reddit.com'
+
+- customize from settings at the top:
+    - Discord: 'https://discord.com/channels/@me'
+    - Mastodon: 'https://mastodon.social'
+
+- indefinite number of nested links: ''
+</textarea>
                 <button onclick="saveSettings();">Save to Local Storage & Update</button>
             </details>
         </section>
@@ -29,7 +40,6 @@
 
         <ol id="Tree" start="-1">
             <li class="backspace start">back</li>
-            <li><span>nothing loaded</span></li>
         </ol>
     </main>
 

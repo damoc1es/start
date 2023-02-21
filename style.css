@@ -5,6 +5,7 @@
   --clr2: #E5BE9E;
   --clr3: #3D314A;
   --clr4: #B4A6AB;
+  --clr5: #E56A75;
 }
 
 html {
@@ -36,6 +37,9 @@ main {
 #Tree.disabled a {
   color: var(--clr3);
 }
+#Tree.disabled .backspace {
+  color: var(--clr3);
+}
 #Tree .backspace {
   cursor: pointer;
   margin-bottom: 0.5em;
@@ -56,6 +60,9 @@ main {
 }
 #Tree li:has(a) {
   --special-char: "→";
+}
+#Tree:not(.disabled) li :hover {
+  color: var(--clr5);
 }
 #Tree::after {
   color: #B4A6AB;

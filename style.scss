@@ -4,6 +4,7 @@
     --clr2: #E5BE9E;
     --clr3: #3D314A;
     --clr4: #B4A6AB;
+    --clr5: #E56A75;
 }
 
 html {
@@ -30,19 +31,21 @@ main { width: min(98vw, 500px); }
         --state-string: "\00a0\00a0 Esc - enable";
         color: var(--clr3);
         a { color: var(--clr3); }
+        .backspace { color: var(--clr3); }
     }
 
     .backspace {
         cursor: pointer;
         margin-bottom: 0.5em;
         color: var(--clr4);
-        
+
         &::before { content: '⌫ - '; }
         &.start { color: var(--clr3); }
     }
 
     li {
         padding-bottom: 0.3em;
+
         &::before {
             content: counter(list-item) " " var(--special-char) " ";
             font-family: "Fira Code", monospace;
@@ -50,7 +53,9 @@ main { width: min(98vw, 500px); }
 
         &:has(a) { --special-char: "→"; }
     }
-
+    
+    &:not(.disabled) li :hover { color: var(--clr5); }
+    
     &::after {
         color: #B4A6AB;
         content: var(--state-string);
@@ -98,9 +103,8 @@ main { width: min(98vw, 500px); }
         margin-bottom: 1em;
         outline: none;
     }
-    input {
-        accent-color: var(--clr2);
-    }
+
+    input { accent-color: var(--clr2); }
 }
 
 #Search {
