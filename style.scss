@@ -105,6 +105,15 @@ main { width: min(98vw, 500px); }
     }
 
     input { accent-color: var(--clr2); }
+
+    select {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--clr3);
+        color: var(--clr2);
+        border: 1px solid var(--clr4);
+        outline: none;
+        font-size: 0.9em;
+    }
 }
 
 #Search {

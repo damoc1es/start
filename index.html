@@ -16,6 +16,13 @@
             <details>
                 <summary>settings</summary>
                 <input type="checkbox" id="reverseFocus" name="reverseFocus"> <label for="reverseFocus">Reverse Focus on Start</label>
+                <br><br>
+                <label for="searchEngineSelect">Search Engine:</label>
+                <select name="searchEngineSelect" id="searchEngineSelect">
+                    <option value="DuckDuckGo" selected>DuckDuckGo</option>
+                    <option value="Google">Google</option>
+                    <option value="Bing">Bing</option>
+                </select>
                 <textarea id="linksTextarea">- some links:
     - GitHub: 'https://github.com/damoc1es/start'
     - another set, nested:
@@ -33,7 +40,7 @@
         </section>
 
         <section id="Search">
-            <form action="https://duckduckgo.com/" method="get">
+            <form action="https://duckduckgo.com/?q=" method="get" id="SearchForm">
                 <input id="SearchInput" aria-label="Search" autocomplete="off" placeholder="λ" type="text" name="q">
             </form>
         </section>

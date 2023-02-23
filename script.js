@@ -1,5 +1,6 @@
 let txtarea = document.getElementById("linksTextarea");
 let focusSetting = document.getElementById("reverseFocus");
+let searchSelect = document.getElementById("searchEngineSelect");
 let linksDisabled = false;
 
 loadTextarea();
@@ -11,6 +12,19 @@ if(focusSetting.checked) {
     document.getElementById('SearchInput').focus();
 }
 
+let searchForm = document.getElementById("SearchForm");
+
+switch(searchSelect.value) {
+    case 'Google':
+        searchForm.action = 'https://google.com/search?q=';
+        break;
+    case 'Bing':
+        searchForm.action = 'https://bing.com/search?q=';
+        break;
+    default:
+        searchForm.action = 'https://duckduckgo.com/?q=';
+}
+
 function loadTextarea() {
     var x = localStorage.getItem("startpageLinks");
     if(x != null)
@@ -20,12 +34,16 @@ function loadTextarea() {
 function loadSettings() {
     var x = localStorage.getItem("startpageFocusSetting");
     focusSetting.checked = (x == "true");
+    x = localStorage.getItem("startpageSearchSetting");
+    if(x != null)
+        searchSelect.value = x; 
 }
 
 function saveSettings() {
     console.log(txtarea);
     localStorage.setItem("startpageLinks", txtarea.value);
     localStorage.setItem("startpageFocusSetting", focusSetting.checked);
+    localStorage.setItem("startpageSearchSetting", searchSelect.value);
     location.reload();
 }
 
@@ -83,7 +101,7 @@ function openPath(path) {
     tree.innerHTML = linksList;
 }
 
-function show_by_path(decimal) {
+function showByPath(decimal) {
     [...decimal].forEach(element => {
         console.log(element)
     });
