@@ -1,81 +1,7 @@
-let txtarea = document.getElementById("linksTextarea");
-let focusSetting = document.getElementById("reverseFocus");
-let searchSelect = document.getElementById("searchEngineSelect");
-let linksDisabled = false;
-
-loadTextarea();
-loadSettings();
-
-let links = jsyaml.load(txtarea.value);
-if(focusSetting.checked) {
-    disableLinks();
-    document.getElementById('SearchInput').focus();
-}
-
-let searchForm = document.getElementById("SearchForm");
-
-switch(searchSelect.value) {
-    case 'Google':
-        searchForm.action = 'https://google.com/search?q=';
-        break;
-    case 'Bing':
-        searchForm.action = 'https://bing.com/search?q=';
-        break;
-    default:
-        searchForm.action = 'https://duckduckgo.com/?q=';
-}
-
-function loadTextarea() {
-    var x = localStorage.getItem("startpageLinks");
-    if(x != null)
-        txtarea.value = x;
-}
-
-function loadSettings() {
-    var x = localStorage.getItem("startpageFocusSetting");
-    focusSetting.checked = (x == "true");
-    x = localStorage.getItem("startpageSearchSetting");
-    if(x != null)
-        searchSelect.value = x; 
-}
-
-function saveSettings() {
-    console.log(txtarea);
-    localStorage.setItem("startpageLinks", txtarea.value);
-    localStorage.setItem("startpageFocusSetting", focusSetting.checked);
-    localStorage.setItem("startpageSearchSetting", searchSelect.value);
-    location.reload();
-}
-
-
-function disableLinks() {
-    document.getElementById('Tree').classList.add("disabled");
-    linksDisabled = true;
-}
-
-function enableLinks() {
-    document.getElementById('Tree').classList.remove("disabled");
-    linksDisabled = false;
-    document.getElementById('SearchInput').blur();
-}
-
-document.documentElement.addEventListener('keydown', (event) => {
-    if(event.key == 'x') {
-        disableLinks();
-    }
-    else if(event.key == 'Escape') {
-        enableLinks();
-    }
-});
-
-document.documentElement.addEventListener('keyup', (event) => {
-    if(event.key == 'x') {
-        document.getElementById('SearchInput').focus();
-    }
-});
-
+let links = jsyaml.load(textarea.value);
 let currentPath = '';
-let tree = document.getElementById('Tree');
+let tree = document.getElementById('tree');
+
 
 function openLink(link) {
     window.open(link, "_self");
@@ -101,11 +27,11 @@ function openPath(path) {
     tree.innerHTML = linksList;
 }
 
-function showByPath(decimal) {
-    [...decimal].forEach(element => {
-        console.log(element)
-    });
-}
+// function showByPath(decimal) {
+//     [...decimal].forEach(element => {
+//         console.log(element)
+//     });
+// }
 
 function parsePath(tree, s) {
     if(s.length == 0)

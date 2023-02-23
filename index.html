@@ -12,7 +12,7 @@
 
 <body>
     <main>
-        <section id="Settings">
+        <section id="settings">
             <details>
                 <summary>settings</summary>
                 <input type="checkbox" id="reverseFocus" name="reverseFocus"> <label for="reverseFocus">Reverse Focus on Start</label>
@@ -35,22 +35,23 @@
 
 - indefinite number of nested links: ''
 </textarea>
-                <button onclick="saveSettings();">Save to Local Storage & Update</button>
+                <button onclick="saveToLocalStorage();">Save to Local Storage & Update</button>
             </details>
         </section>
 
-        <section id="Search">
-            <form action="https://duckduckgo.com/?q=" method="get" id="SearchForm">
-                <input id="SearchInput" aria-label="Search" autocomplete="off" placeholder="λ" type="text" name="q">
+        <section id="search">
+            <form action="https://duckduckgo.com/?q=" method="get" id="searchForm">
+                <input id="searchInput" aria-label="Search" autocomplete="off" placeholder="λ" type="text" name="q">
             </form>
         </section>
 
-        <ol id="Tree" start="-1">
+        <ol id="tree" start="-1">
             <li class="backspace start">back</li>
         </ol>
     </main>
 
-    <script src="js-yaml.min.js"></script> <!--js-yaml 4.1.0 (https://github.com/nodeca/js-yaml)-->
-    <script src="script.js"></script>
+    <script type="text/javascript" src="js-yaml.min.js"></script> <!--js-yaml 4.1.0 (https://github.com/nodeca/js-yaml)-->
+    <script type="text/javascript" src="settings.js"></script>
+    <script type="text/javascript" src="script.js"></script>
 </body>
 </html>

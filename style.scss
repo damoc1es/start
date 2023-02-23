@@ -20,7 +20,7 @@ body {
 
 main { width: min(98vw, 500px); }
 
-#Tree {
+#tree {
     list-style: none;
     font-size: 1.5em;
     padding-left: 1em;
@@ -70,7 +70,7 @@ main { width: min(98vw, 500px); }
     span { cursor: pointer; }
 }
 
-#Settings {
+#settings {
     color: var(--clr4);
     
     summary {
@@ -87,7 +87,7 @@ main { width: min(98vw, 500px); }
         color: var(--clr2);
         border: 1px solid var(--clr4);
         font-family: "Fira Code", monospace;
-        padding: 1em;
+        padding: 0.8em;
         resize: none;
         width: 90%;
         height: 10em;
@@ -116,7 +116,7 @@ main { width: min(98vw, 500px); }
     }
 }
 
-#Search {
+#search {
     input {
         outline: none;
         border: none;

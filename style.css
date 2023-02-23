@@ -23,64 +23,64 @@ main {
   width: min(98vw, 500px);
 }
 
-#Tree {
+#tree {
   list-style: none;
   font-size: 1.5em;
   padding-left: 1em;
   --special-char: "⊧";
   --state-string: "  x - disable";
 }
-#Tree.disabled {
+#tree.disabled {
   --state-string: "  Esc - enable";
   color: var(--clr3);
 }
-#Tree.disabled a {
+#tree.disabled a {
   color: var(--clr3);
 }
-#Tree.disabled .backspace {
+#tree.disabled .backspace {
   color: var(--clr3);
 }
-#Tree .backspace {
+#tree .backspace {
   cursor: pointer;
   margin-bottom: 0.5em;
   color: var(--clr4);
 }
-#Tree .backspace::before {
+#tree .backspace::before {
   content: "⌫ - ";
 }
-#Tree .backspace.start {
+#tree .backspace.start {
   color: var(--clr3);
 }
-#Tree li {
+#tree li {
   padding-bottom: 0.3em;
 }
-#Tree li::before {
+#tree li::before {
   content: counter(list-item) " " var(--special-char) " ";
   font-family: "Fira Code", monospace;
 }
-#Tree li:has(a) {
+#tree li:has(a) {
   --special-char: "→";
 }
-#Tree:not(.disabled) li :hover {
+#tree:not(.disabled) li :hover {
   color: var(--clr5);
 }
-#Tree::after {
+#tree::after {
   color: #B4A6AB;
   content: var(--state-string);
   font-size: 0.8em;
 }
-#Tree a {
+#tree a {
   color: var(--clr2);
   text-decoration: none;
 }
-#Tree span {
+#tree span {
   cursor: pointer;
 }
 
-#Settings {
+#settings {
   color: var(--clr4);
 }
-#Settings summary {
+#settings summary {
   cursor: pointer;
   text-align: right;
   outline: none;
@@ -89,18 +89,18 @@ main {
      -moz-user-select: none;
           user-select: none;
 }
-#Settings textarea {
+#settings textarea {
   margin: 1em 0;
   background-color: var(--clr3);
   color: var(--clr2);
   border: 1px solid var(--clr4);
   font-family: "Fira Code", monospace;
-  padding: 1em;
+  padding: 0.8em;
   resize: none;
   width: 90%;
   height: 10em;
 }
-#Settings button {
+#settings button {
   background-color: var(--clr4);
   font-family: "Inter", sans-serif;
   font-weight: 600;
@@ -110,10 +110,10 @@ main {
   margin-bottom: 1em;
   outline: none;
 }
-#Settings input {
+#settings input {
   accent-color: var(--clr2);
 }
-#Settings select {
+#settings select {
   font-family: "Inter", sans-serif;
   background-color: var(--clr3);
   color: var(--clr2);
@@ -122,7 +122,7 @@ main {
   font-size: 0.9em;
 }
 
-#Search input {
+#search input {
   outline: none;
   border: none;
   border-bottom: 3px solid var(--clr3);
@@ -132,12 +132,12 @@ main {
   padding: 0.2em 0.6em 0.5em 0.6em;
   font-family: "Inter", sans-serif;
 }
-#Search input::-moz-placeholder {
+#search input::-moz-placeholder {
   color: var(--clr3);
 }
-#Search input::placeholder {
+#search input::placeholder {
   color: var(--clr3);
 }
-#Search input:focus {
+#search input:focus {
   border-color: var(--clr4);
 }/*# sourceMappingURL=style.css.map */
