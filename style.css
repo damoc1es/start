@@ -1,16 +1,16 @@
 @charset "UTF-8";
 @import url("https://rsms.me/inter/inter.css");
 :root {
-  --clr1: #1A1423;
-  --clr2: #E5BE9E;
-  --clr3: #3D314A;
-  --clr4: #B4A6AB;
-  --clr5: #E56A75;
+  --background: #1A1423;
+  --color: #E5BE9E;
+  --background-alt: #3D314A;
+  --color-alt: #B4A6AB;
+  --link-hover: #E56A75;
 }
 
 html {
-  background-color: var(--clr1);
-  color: var(--clr2);
+  background-color: var(--background);
+  color: var(--color);
   font-family: "Inter", sans-serif;
 }
 
@@ -32,24 +32,24 @@ main {
 }
 #tree.disabled {
   --state-string: "  Esc - enable";
-  color: var(--clr3);
+  color: var(--background-alt);
 }
 #tree.disabled a {
-  color: var(--clr3);
+  color: var(--background-alt);
 }
 #tree.disabled .backspace {
-  color: var(--clr3);
+  color: var(--background-alt);
 }
 #tree .backspace {
   cursor: pointer;
   margin-bottom: 0.5em;
-  color: var(--clr4);
+  color: var(--color-alt);
 }
 #tree .backspace::before {
   content: "⌫ - ";
 }
 #tree .backspace.start {
-  color: var(--clr3);
+  color: var(--background-alt);
 }
 #tree li {
   padding-bottom: 0.3em;
@@ -62,15 +62,15 @@ main {
   --special-char: "→";
 }
 #tree:not(.disabled) li :hover {
-  color: var(--clr5);
+  color: var(--link-hover);
 }
 #tree::after {
-  color: #B4A6AB;
+  color: var(--color-alt);
   content: var(--state-string);
   font-size: 0.8em;
 }
 #tree a {
-  color: var(--clr2);
+  color: var(--color);
   text-decoration: none;
 }
 #tree span {
@@ -78,7 +78,7 @@ main {
 }
 
 #settings {
-  color: var(--clr4);
+  color: var(--color-alt);
 }
 #settings summary {
   cursor: pointer;
@@ -91,9 +91,9 @@ main {
 }
 #settings textarea {
   margin: 1em 0;
-  background-color: var(--clr3);
-  color: var(--clr2);
-  border: 1px solid var(--clr4);
+  background-color: var(--background-alt);
+  color: var(--color);
+  border: 1px solid var(--color-alt);
   font-family: "Fira Code", monospace;
   padding: 0.8em;
   resize: none;
@@ -101,23 +101,30 @@ main {
   height: 10em;
 }
 #settings button {
-  background-color: var(--clr4);
+  background-color: var(--color-alt);
   font-family: "Inter", sans-serif;
   font-weight: 600;
-  color: var(--clr1);
+  color: var(--background);
   padding: 0.3em;
-  border: 3px solid var(--clr3);
+  border: 3px solid var(--background-alt);
   margin-bottom: 1em;
   outline: none;
 }
 #settings input {
-  accent-color: var(--clr2);
+  accent-color: var(--color);
+}
+#settings input[type=color] {
+  border: none;
+  margin: 0 0 0.5em 0.5em;
+}
+#settings input[type=color] ~ label {
+  padding-left: 0.5em;
 }
 #settings select {
   font-family: "Inter", sans-serif;
-  background-color: var(--clr3);
-  color: var(--clr2);
-  border: 1px solid var(--clr4);
+  background-color: var(--background-alt);
+  color: var(--color);
+  border: 1px solid var(--color-alt);
   outline: none;
   font-size: 0.9em;
 }
@@ -125,19 +132,19 @@ main {
 #search input {
   outline: none;
   border: none;
-  border-bottom: 3px solid var(--clr3);
+  border-bottom: 3px solid var(--background-alt);
   background: none;
-  color: var(--clr2);
+  color: var(--color);
   font-size: 1.5em;
   padding: 0.2em 0.6em 0.5em 0.6em;
   font-family: "Inter", sans-serif;
 }
 #search input::-moz-placeholder {
-  color: var(--clr3);
+  color: var(--background-alt);
 }
 #search input::placeholder {
-  color: var(--clr3);
+  color: var(--background-alt);
 }
 #search input:focus {
-  border-color: var(--clr4);
+  border-color: var(--color-alt);
 }/*# sourceMappingURL=style.css.map */

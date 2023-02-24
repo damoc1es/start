@@ -4,6 +4,10 @@ let searchSelect = document.getElementById("searchEngineSelect");
 let searchForm = document.getElementById("searchForm");
 let linksDisabled = false;
 
+const colorNames = ["background", "color", "background-alt", "color-alt", "link-hover"];
+const colorDefault = ["#1A1423", "#E5BE9E", "#3D314A", "#B4A6AB", "#E56A75"];
+
+
 loadFromLocalStorage();
 
 if(focusSetting.checked) {
@@ -35,14 +39,27 @@ function loadFromLocalStorage() {
     // search engine setting
     let x = localStorage.getItem("startpageSearchSetting");
     if(x != null)
-        searchSelect.value = x; 
+        searchSelect.value = x;
+
+    // color scheme
+    let groot = document.querySelector(":root");
+    for(let i=0; i<colorNames.length; i++) {
+        var color = localStorage.getItem("startpage-" + colorNames[i]);
+
+        if(color != null) {
+            groot.style.setProperty('--' + colorNames[i], color);
+            document.getElementById(colorNames[i]).value = color;
+        }
+    }
 }
 
 function saveToLocalStorage() {
-    console.log(textarea);
     localStorage.setItem("startpageLinks", textarea.value);
     localStorage.setItem("startpageFocusSetting", focusSetting.checked);
     localStorage.setItem("startpageSearchSetting", searchSelect.value);
+    for(let i=0; i<colorNames.length; i++) {
+        localStorage.setItem("startpage-" + colorNames[i], document.getElementById(colorNames[i]).value);
+    }
     location.reload();
 }
 
@@ -55,6 +72,13 @@ function enableLinks() {
     document.getElementById('tree').classList.remove("disabled");
     linksDisabled = false;
     document.getElementById('searchInput').blur();
+}
+
+function resetColors() {
+    for(let i=0; i<colorNames.length; i++) {
+        localStorage.setItem("startpage-" + colorNames[i], colorDefault[i]);
+    }
+    location.reload();
 }
 
 document.documentElement.addEventListener('keydown', (event) => {

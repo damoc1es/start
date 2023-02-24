@@ -23,6 +23,13 @@
                     <option value="Google">Google</option>
                     <option value="Bing">Bing</option>
                 </select>
+                
+    <br><br><input type="color" id="background" name="background" value="#1A1423"><label for="background">Background</label>
+    <input type="color" id="color" name="color" value="#E5BE9E"><label for="color">Color</label>
+    
+    <br><input type="color" id="background-alt" name="background-alt" value="#3D314A"><label for="background-alt">Background (Alt)</label>
+    <input type="color" id="color-alt" name="color-alt" value="#B4A6AB"><label for="color-alt">Color (Alt)</label>
+    <input type="color" id="link-hover" name="link-hover" value="#E56A75"><label for="link-hover">Link Hover</label>
                 <textarea id="linksTextarea">- some links:
     - GitHub: 'https://github.com/damoc1es/start'
     - another set, nested:
@@ -36,6 +43,7 @@
 - indefinite number of nested links: ''
 </textarea>
                 <button onclick="saveToLocalStorage();">Save to Local Storage & Update</button>
+                <button onclick="resetColors();">Reset Colors</button>
             </details>
         </section>
 
@@ -46,7 +54,6 @@
         </section>
 
         <ol id="tree" start="-1">
-            <li class="backspace start">back</li>
         </ol>
     </main>
 
