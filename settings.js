@@ -95,3 +95,7 @@ document.documentElement.addEventListener('keyup', (event) => {
         document.getElementById('searchInput').focus();
     }
 });
+
+document.getElementById('searchInput').addEventListener('focus', () => {
+    disableLinks();
+});
