@@ -1,5 +1,5 @@
 let links = jsyaml.load(textarea.value);
-let currentPath = '';
+let currentPath = [];
 let tree = document.getElementById('tree');
 
 
@@ -74,7 +74,9 @@ function parsePath(tree, s) {
 }
 
 function newPath(c) {
-    currentPath += c;
+    if(linksDisabled)
+        enableLinks();
+    currentPath.push(c);
     parsePath(links, currentPath);
 }
 
