@@ -23,6 +23,9 @@ export class Node {
             this.type = NodeType.LINK;
         } else {
             this.type = NodeType.TREE;
+            for(const child of data) {
+                child.parent = this;
+            }
         }
 
         this.parent = parent;
@@ -41,12 +44,6 @@ export class Node {
             }
         }
 
-        const retVal = new Node(json.name, arr);
-
-        for(const child of arr) {
-            child.parent = retVal;
-        }
-
-        return retVal;
+        return new Node(json.name, arr);
     }
 }
