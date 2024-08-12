@@ -12,3 +12,13 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+li {
+  font-family: monospace;
+  font-size: 2em;
+  list-style: none;
+
+  a {
+    cursor: pointer;
+  }
+}
