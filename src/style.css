@@ -13,12 +13,44 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+#root {
+  display: flex;
+  justify-content: center;
+
+  > section {
+    width: min(98vw, 600px);
+  }
+}
+
 li {
-  font-family: monospace;
-  font-size: 2em;
+  font-family: "Fira Code", "Fira Mono", monospace;
+  font-size: 1.5em;
   list-style: none;
+  padding-bottom: 0.2em;
 
   a {
     cursor: pointer;
+    font-family: Inter;
+    text-decoration: none;
+    color: #e5be9e;
+
+    &:hover {
+      color: #E56A75;
+    }
+  }
+
+  &.backspaceItem {
+    color: #b4a6ab;
+    a {
+      color: #b4a6ab;
+    }
+    margin-bottom: 0.2em;
+
+    &.inactive {
+      color: #3d314a;
+      a {
+        color: #3d314a;
+      }
+    }
   }
 }

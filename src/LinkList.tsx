@@ -59,6 +59,9 @@ function LinkList({ treeNode } : {treeNode: Node}) {
     return (
         <>
             <ul>
+                <li key={crypto.randomUUID()} className={node.parent ? "backspaceItem" : "backspaceItem inactive"}>
+                    {'\u00A0'.repeat(decimalCode != "" ? decimalCode.length+1 : 0)}⌫ - <a onClick={() => goBack()}>back</a>
+                </li>
                 {typeof node.data !== "string" &&
                     node.data.map((object: Node, i: number) =>
                         // TODO: this is possibly not very efficient
@@ -74,10 +77,6 @@ function LinkList({ treeNode } : {treeNode: Node}) {
                         </li>
                 )}
             </ul>
-            {
-                node.parent &&
-                <button onClick={() => goBack()}>Back</button>
-            }
         </>
     )
 }

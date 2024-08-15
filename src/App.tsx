@@ -8,9 +8,9 @@ function App() {
 
   return (
     <>
-      <div className="card">
+      <section>
         <LinkList treeNode={node}/>
-      </div>
+      </section>
     </>
   )
 }
