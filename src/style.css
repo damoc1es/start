@@ -24,10 +24,20 @@
 
 #root {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 
-  > section {
+  > section, > nav {
     width: min(98vw, 600px);
+  }
+}
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+  img {
+    width: 2.5em;
+    cursor: pointer;
   }
 }
 

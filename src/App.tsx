@@ -1,16 +1,35 @@
+import { useState } from 'react';
 import LinkList from './LinkList'
 import { Node } from './Node';
 import defaultJson from './defaultJson';
+import SettingsTab from './SettingsTab';
+import settingsIcon from './assets/settings.svg'
 
 
 function App() {
   const node: Node = Node.fromJson(defaultJson);
+  const [settingsTabOpened, setSettingsTabOpened] = useState(false);
+
+  const toggleSettings = () => {
+    setSettingsTabOpened(settingsTabOpened ? false : true);
+  }
 
   return (
     <>
-      <section>
-        <LinkList treeNode={node}/>
-      </section>
+      <nav>
+        <img onClick={toggleSettings} src={settingsIcon} alt="settings icon" title="Settings"></img>
+      </nav>
+      {
+        settingsTabOpened
+        ?
+          <section className='settingsTab'>
+            <SettingsTab/>
+          </section>
+        :
+          <section>
+            <LinkList treeNode={node}/>
+          </section>
+      }
     </>
   )
 }
