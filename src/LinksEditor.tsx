@@ -1,7 +1,5 @@
 import { useState, useReducer } from 'react'
-import defaultJson from './defaultJson'
 import { LinkListDescriptor } from './Node'
-
 
 function LinkNew({ onAdd } : {onAdd: (name: string, link: string) => void}) {
     const [name, setName] = useState('');
@@ -69,8 +67,19 @@ function LinksLevel({ node } : {node: LinkListDescriptor}) {
 }
 
 function LinksEditor() {
+    const storedNode = localStorage.getItem('linksList');
+    const node = storedNode != null ? JSON.parse(storedNode) : {name: 'Links', children: []};
+
+    const onSave = () => {
+        localStorage.setItem('linksList', JSON.stringify(node))
+        window.location.reload();
+    }
+
     return (
-        <LinksLevel node={defaultJson}/>
+        <>
+            <LinksLevel node={node}/>
+            <button onClick={onSave}>Save & Exit</button>
+        </>
     )
 }
 

@@ -7,7 +7,8 @@ import settingsIcon from './assets/settings.svg'
 
 
 function App() {
-  const node: Node = Node.fromJson(defaultJson);
+  const savedLinks = localStorage.getItem('linksList');
+  const node: Node = Node.fromJson(savedLinks ? JSON.parse(savedLinks) : defaultJson);
   const [settingsTabOpened, setSettingsTabOpened] = useState(false);
 
   const toggleSettings = () => {
@@ -17,7 +18,7 @@ function App() {
   return (
     <>
       <nav>
-        <img onClick={toggleSettings} src={settingsIcon} alt="settings icon" title="Settings"></img>
+        <img onClick={toggleSettings} src={settingsIcon} alt='settings icon' title='Settings'></img>
       </nav>
       {
         settingsTabOpened
