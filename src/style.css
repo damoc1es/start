@@ -75,8 +75,31 @@ li {
   }
 }
 
-.linksEditor .linksEditor {
-  display: flex;
-  flex-direction: column;
-  margin-left: 2em;
+.linksEditor {
+  .linksEditor {
+    display: flex;
+    flex-direction: column;
+    margin-left: 2em;
+  }
+
+  input {
+    color: var(--backspace-color);
+    font-family: var(--font-sans-serif);
+    font-size: 1em;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid var(--backspace-color);
+  }
+  button {
+    margin-right: 0.5em;
+  }
+}
+
+button {
+  border: none;
+  font-weight: bold;
+  color: var(--background);
+  background-color: var(--color);
+  font-family: var(--font-monospace);
+  padding: 0.3em 0.6em;
 }

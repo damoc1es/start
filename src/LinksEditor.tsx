@@ -15,7 +15,7 @@ function LinkNew({ onAdd } : {onAdd: (name: string, link: string) => void}) {
         <span>
             <button onClick={addNode} disabled={name == ''}>+</button>
             <input value={name} onChange={e => setName(e.target.value)} placeholder='Name'/> <br/>
-            <input value={link} onChange={e => setLink(e.target.value)} placeholder='Link (leave empty for sublist)'/>
+            <input value={link} onChange={e => setLink(e.target.value)} placeholder='Link, or empty for sublist'/>
         </span>
     )
 }
@@ -23,7 +23,8 @@ function LinkNew({ onAdd } : {onAdd: (name: string, link: string) => void}) {
 function LinkItem({ node, onRemove } : {node: LinkListDescriptor, onRemove: () => void}) {
     return (
         <span>
-            <button onClick={onRemove}>-</button> {node.name}
+            <button onClick={onRemove}>-</button>
+            {node.name}
             {
                 node.children &&
                 <LinksLevel node={node}/>
@@ -77,7 +78,7 @@ function LinksEditor() {
 
     return (
         <>
-            <LinksLevel node={node}/>
+            <LinksLevel node={node}/> <br/>
             <button onClick={onSave}>Save & Exit</button>
         </>
     )
