@@ -1,9 +1,28 @@
-function SettingsTab() {
+import { useState } from 'react'
+import LinksEditor from './LinksEditor';
 
+function SettingsTab() {
+    const [linksEditorOpened, setLinksEditorOpened] = useState(false);
+
+    const toggleLinksEditor = () => {
+        setLinksEditorOpened(linksEditorOpened ? false : true);
+    }
 
     return (
         <>
-            <button>Open Links Editor</button>
+            <button onClick={toggleLinksEditor}>Toggle Links Editor</button>
+            <br/><br/>
+
+            {
+                linksEditorOpened
+                ?
+                    <div className='linksEditor'>
+                        <LinksEditor/>
+                    </div>
+                :
+                    <>
+                    </>
+            }
         </>
     )
 }
