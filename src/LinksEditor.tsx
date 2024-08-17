@@ -102,15 +102,27 @@ function LinksLevel({ node } : {node: LinkListDescriptor}) {
 
 function LinksEditor() {
     const storedNode = localStorage.getItem('linksList');
-    const node = storedNode != null ? JSON.parse(storedNode) : {name: 'Links', children: []};
+    const [node, setNode] = useState(storedNode != null ? JSON.parse(storedNode) : {name: 'Links', children: []});
 
     const onSave = () => {
         localStorage.setItem('linksList', JSON.stringify(node))
         window.location.reload();
     }
 
+    const onExport = () => {
+        navigator.clipboard.writeText(JSON.stringify(node));
+    }
+
+    const onImport = () => {
+        navigator.clipboard.readText().then((clipboardText) => {
+            setNode(JSON.parse(clipboardText));
+        });
+    }
+
     return (
         <>
+            <button onClick={onExport}>Export to Clipboard</button> <button onClick={onImport}>Import from Clipboard</button>
+            <br/><br/>
             <LinksLevel node={node}/> <br/>
             <button onClick={onSave}>Save & Exit</button>
         </>

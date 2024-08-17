@@ -13,7 +13,7 @@ function SettingsTab() {
             {
                 linksEditorOpened
                 ?
-                    <button onClick={toggleLinksEditor}>Links Editor</button>
+                    <button onClick={toggleLinksEditor}>Go to Links Editor</button>
                 :
                     <>
                         <button onClick={toggleLinksEditor}>Back to All Settings</button>
