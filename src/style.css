@@ -96,10 +96,31 @@ li {
 }
 
 button {
-  border: none;
-  font-weight: bold;
-  color: var(--background);
-  background-color: var(--color);
+  --btn-bg: var(--color);
+  --btn-clr: var(--background);
+
+  color: var(--btn-clr);
+  background-color: var(--btn-bg);
+  border: 3px solid var(--btn-bg);
+  border-radius: 0.9em;
+  padding: 0.3em 0.5em 0.1em;
+
   font-family: var(--font-monospace);
-  padding: 0.3em 0.6em;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  &:hover {
+    color: var(--btn-bg);
+    background-color: var(--btn-clr);
+  }
+
+  &:disabled {
+    --btn-bg: var(--backspace-color);
+    cursor: initial;
+    &:hover {
+      color: var(--btn-clr);
+      background-color: var(--btn-bg);
+    }
+  }
 }

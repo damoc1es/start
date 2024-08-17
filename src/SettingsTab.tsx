@@ -10,17 +10,17 @@ function SettingsTab() {
 
     return (
         <>
-            <button onClick={toggleLinksEditor}>Toggle Links Editor</button>
-            <br/><br/>
-
             {
                 linksEditorOpened
                 ?
-                    <div className='linksEditor'>
-                        <LinksEditor/>
-                    </div>
+                    <button onClick={toggleLinksEditor}>Links Editor</button>
                 :
                     <>
+                        <button onClick={toggleLinksEditor}>Back to All Settings</button>
+                        <br/><br/>
+                        <div className='linksEditor'>
+                            <LinksEditor/>
+                        </div>
                     </>
             }
         </>
