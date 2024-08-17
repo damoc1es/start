@@ -23,17 +23,51 @@ function LinkNew({ onAdd } : {onAdd: (name: string, link: string) => void}) {
 interface LinkItemProps {
     node: LinkListDescriptor,
     onRemove: () => void,
+    onSave: () => void,
     onUp?: () => void,
     onDown?: () => void
 }
 
-function LinkItem({ node, onRemove, onUp, onDown} : LinkItemProps) {
+function LinkItem({ node, onRemove, onSave, onUp, onDown} : LinkItemProps) {
+    const [editMode, setEditMode] = useState(false);
+    const [name, setName] = useState(node.name);
+    const [link, setLink] = useState(node.link);
+
+    const onEdit = () => {
+        if(editMode) {
+            node.name = name;
+            if(node.link) {
+                node.link = link;
+            }
+            onSave();
+        }
+
+        setEditMode(!editMode);
+    }
+
+    const onCancelEdit = () => {
+        setEditMode(!editMode);
+        setName(node.name);
+        if(node.link) {
+            setLink(node.link);
+        }
+    }
+
     return (
         <span>
             <button onClick={onRemove}>-</button>
             <button disabled={onUp ? false : true} onClick={onUp}>↑</button>
             <button disabled={onDown ? false : true} onClick={onDown}>↓</button>
-            {node.name}
+
+            {!editMode ?
+                <>{node.name} <a onClick={onEdit}>✎</a></>
+            :
+                <>
+                    <input value={name} onChange={e => setName(e.target.value)} placeholder='Name'/>
+                    {node.link && <input value={link} onChange={e => setLink(e.target.value)} placeholder='Link'/>}
+                    <a onClick={onEdit}>🖫</a> <a onClick={onCancelEdit}>🗙</a>
+                </>
+            }
             {
                 node.children &&
                 <LinksLevel node={node}/>
@@ -64,6 +98,10 @@ function LinksLevel({ node } : {node: LinkListDescriptor}) {
         }
     }
 
+    const updateLinks = () => {
+        forceUpdate();
+    }
+
     const moveNodeUp = (subnode: LinkListDescriptor) => {
         if(node.children) {
             const index = node.children.indexOf(subnode);
@@ -91,6 +129,7 @@ function LinksLevel({ node } : {node: LinkListDescriptor}) {
                     <LinkItem key={crypto.randomUUID()}
                         node={subnode}
                         onRemove={() => {removeNode(subnode)}}
+                        onSave={updateLinks}
                         onUp={index == 0 || arr.length == 1 ? undefined : () => {moveNodeUp(subnode)}}
                         onDown={index == arr.length-1 || arr.length == 1 ? undefined : () => {moveNodeDown(subnode)}}/>
                 )

@@ -91,6 +91,10 @@ li {
     > button:last-of-type {
       margin-right: 0.5em;
     }
+
+    > a {
+      cursor: pointer;
+    }
   }
 
   input {
