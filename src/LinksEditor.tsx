@@ -20,10 +20,19 @@ function LinkNew({ onAdd } : {onAdd: (name: string, link: string) => void}) {
     )
 }
 
-function LinkItem({ node, onRemove } : {node: LinkListDescriptor, onRemove: () => void}) {
+interface LinkItemProps {
+    node: LinkListDescriptor,
+    onRemove: () => void,
+    onUp?: () => void,
+    onDown?: () => void
+}
+
+function LinkItem({ node, onRemove, onUp, onDown} : LinkItemProps) {
     return (
         <span>
             <button onClick={onRemove}>-</button>
+            <button disabled={onUp ? false : true} onClick={onUp}>↑</button>
+            <button disabled={onDown ? false : true} onClick={onDown}>↓</button>
             {node.name}
             {
                 node.children &&
@@ -55,11 +64,35 @@ function LinksLevel({ node } : {node: LinkListDescriptor}) {
         }
     }
 
+    const moveNodeUp = (subnode: LinkListDescriptor) => {
+        if(node.children) {
+            const index = node.children.indexOf(subnode);
+            if(index > 0) {
+                [node.children[index], node.children[index-1]] = [node.children[index-1], node.children[index]];
+                forceUpdate();
+            }
+        }
+    }
+
+    const moveNodeDown = (subnode: LinkListDescriptor) => {
+        if(node.children) {
+            const index = node.children.indexOf(subnode);
+            if(index >= 0 && index != node.children.length-1) {
+                [node.children[index], node.children[index+1]] = [node.children[index+1], node.children[index]];
+                forceUpdate();
+            }
+        }
+    }
+
     return (
         <div className='linksEditor'>
             {
-                node.children && node.children.map((subnode: LinkListDescriptor) =>
-                    <LinkItem key={crypto.randomUUID()} node={subnode} onRemove={() => {removeNode(subnode)}}/>
+                node.children && node.children.map((subnode: LinkListDescriptor, index: number, arr: LinkListDescriptor[]) =>
+                    <LinkItem key={crypto.randomUUID()}
+                        node={subnode}
+                        onRemove={() => {removeNode(subnode)}}
+                        onUp={index == 0 || arr.length == 1 ? undefined : () => {moveNodeUp(subnode)}}
+                        onDown={index == arr.length-1 || arr.length == 1 ? undefined : () => {moveNodeDown(subnode)}}/>
                 )
             }
             <LinkNew onAdd={addNode}/>

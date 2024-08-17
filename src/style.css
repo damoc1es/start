@@ -35,6 +35,7 @@
 nav {
   display: flex;
   justify-content: flex-end;
+
   img {
     width: 2.5em;
     cursor: pointer;
@@ -60,10 +61,11 @@ li {
 
   &.backspaceItem {
     color: var(--backspace-color);
+    margin-bottom: 0.2em;
+
     a {
       color: var(--backspace-color);
     }
-    margin-bottom: 0.2em;
 
     &.inactive {
       color: var(--inactive);
@@ -80,6 +82,15 @@ li {
     display: flex;
     flex-direction: column;
     margin-left: 2em;
+    margin-top: 0.2em;
+  }
+
+  > span {
+    padding-bottom: 0.2em;
+
+    > button:last-of-type {
+      margin-right: 0.5em;
+    }
   }
 
   input {
@@ -90,8 +101,9 @@ li {
     border: none;
     border-bottom: 1px solid var(--backspace-color);
   }
+
   button {
-    margin-right: 0.5em;
+    margin-right: 0.2em;
   }
 }
 
@@ -118,6 +130,7 @@ button {
   &:disabled {
     --btn-bg: var(--backspace-color);
     cursor: initial;
+
     &:hover {
       color: var(--btn-clr);
       background-color: var(--btn-bg);
