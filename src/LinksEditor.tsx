@@ -1,10 +1,17 @@
 import { useState, useReducer } from 'react'
 import { LinkListDescriptor } from './Node'
 
+/**
+ * Component for the add new node item.
+ *
+ * @param onAdd Function to add a new node.
+ * @returns {ReactNode} The add new node item component.
+ */
 function LinkNew({ onAdd } : {onAdd: (name: string, link: string) => void}) {
     const [name, setName] = useState('');
     const [link, setLink] = useState('');
 
+    // Function to add a new node
     const addNode = () => {
         onAdd(name, link);
         setName('');
@@ -20,6 +27,9 @@ function LinkNew({ onAdd } : {onAdd: (name: string, link: string) => void}) {
     )
 }
 
+/**
+ * Properties for the link item component.
+ */
 interface LinkItemProps {
     node: LinkListDescriptor,
     onRemove: () => void,
@@ -28,11 +38,18 @@ interface LinkItemProps {
     onDown?: () => void
 }
 
+/**
+ * Component for a link item in the links editor.
+ *
+ * @param props Node to render and functions to modify place within list.
+ * @returns {ReactNode} The link item component.
+ */
 function LinkItem({ node, onRemove, onSave, onUp, onDown} : LinkItemProps) {
     const [editMode, setEditMode] = useState(false);
     const [name, setName] = useState(node.name);
     const [link, setLink] = useState(node.link);
 
+    // Function to edit the node
     const onEdit = () => {
         if(editMode) {
             node.name = name;
@@ -45,6 +62,7 @@ function LinkItem({ node, onRemove, onSave, onUp, onDown} : LinkItemProps) {
         setEditMode(!editMode);
     }
 
+    // Function to cancel the edit
     const onCancelEdit = () => {
         setEditMode(!editMode);
         setName(node.name);
@@ -76,9 +94,16 @@ function LinkItem({ node, onRemove, onSave, onUp, onDown} : LinkItemProps) {
     )
 }
 
+/**
+ * Component for the links level editor.
+ *
+ * @param node The node to render and edit.
+ * @returns {ReactNode} The links level component.
+ */
 function LinksLevel({ node } : {node: LinkListDescriptor}) {
     const [, forceUpdate] = useReducer(x => x + 1, 0);
 
+    // Function to remove a node
     const removeNode = (subnode: LinkListDescriptor) => {
         if(node.children) {
             const index = node.children.indexOf(subnode);
@@ -87,6 +112,7 @@ function LinksLevel({ node } : {node: LinkListDescriptor}) {
         }
     }
 
+    // Function to add a new node
     const addNode = (name: string, link: string) => {
         if(node.children) {
             if(link == '') {
@@ -98,10 +124,12 @@ function LinksLevel({ node } : {node: LinkListDescriptor}) {
         }
     }
 
+    // Function to update the links
     const updateLinks = () => {
         forceUpdate();
     }
 
+    // Function to move a node up
     const moveNodeUp = (subnode: LinkListDescriptor) => {
         if(node.children) {
             const index = node.children.indexOf(subnode);
@@ -112,6 +140,7 @@ function LinksLevel({ node } : {node: LinkListDescriptor}) {
         }
     }
 
+    // Function to move a node down
     const moveNodeDown = (subnode: LinkListDescriptor) => {
         if(node.children) {
             const index = node.children.indexOf(subnode);
@@ -139,19 +168,27 @@ function LinksLevel({ node } : {node: LinkListDescriptor}) {
     )
 }
 
+/**
+ * Component for the links editor.
+ *
+ * @returns {ReactNode} The links editor component.
+ */
 function LinksEditor() {
     const storedNode = localStorage.getItem('linksList');
     const [node, setNode] = useState(storedNode != null ? JSON.parse(storedNode) : {name: 'Links', children: []});
 
+    // Function to save the links to local storage
     const onSave = () => {
         localStorage.setItem('linksList', JSON.stringify(node))
         window.location.reload();
     }
 
+    // Function to export the links to the clipboard
     const onExport = () => {
         navigator.clipboard.writeText(JSON.stringify(node));
     }
 
+    // Function to import the links from the clipboard
     const onImport = () => {
         navigator.clipboard.readText().then((clipboardText) => {
             setNode(JSON.parse(clipboardText));

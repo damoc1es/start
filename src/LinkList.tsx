@@ -1,24 +1,33 @@
 import { useState, useEffect, useCallback } from 'react'
 import { NodeType, Node } from './Node';
 
-const LINK_CHARACTER = ' → ';
-const TREE_CHARACTER = ' ⊧ ';
-const NIL_CHARACTER = '●';
+// Constants for the characters used in the list
+const LINK_CHARACTER = ' → '; // used for links
+const TREE_CHARACTER = ' ⊧ '; // used for trees
+const NIL_CHARACTER = '●'; // used for nodes after the 9th one in a view
 
+/**
+ * List of nodes (links/trees) component.
+ *
+ * @param treeNode The node to render the list from.
+ * @returns {ReactNode} The list of nodes component.
+ */
 function LinkList({ treeNode } : {treeNode: Node}) {
     const [node, setNode] = useState(treeNode);
     const [decimalCode, setDecimalCode] = useState("");
 
+    // The origin node must be a tree
     if(treeNode.type !== NodeType.TREE) {
         console.error('ERROR: NodeType is not TREE');
     }
 
+    // Function to handle the node move to a another tree
     const handleNodeMove = useCallback((node: Node, i: number) => {
         setNode(node);
         setDecimalCode(`${decimalCode}${i < 10 ? i : NIL_CHARACTER}`);
     }, [decimalCode]);
 
-
+    // Function to go back to the parent tree
     const goBack = useCallback(() => {
         if(node.parent !== undefined) {
             setNode(node.parent);
@@ -26,7 +35,9 @@ function LinkList({ treeNode } : {treeNode: Node}) {
         }
     }, [node.parent, decimalCode]);
 
-
+    // Function to go to a node in the tree by index
+    // If the node is a link, open the link in a new tab
+    // If the node is a tree, move to that tree
     const goTo = useCallback((i: number) => {
         if(typeof node.data !== "string" && i < node.data.length) {
             if(typeof node.data[i].data !== "string") {
@@ -37,8 +48,11 @@ function LinkList({ treeNode } : {treeNode: Node}) {
         }
     }, [node.data, handleNodeMove]);
 
-
+    // Add event listener for keyboard
     useEffect(()=>{
+        // Function to handle the keydown event
+        // If the key is a digit, go to the node with that index
+        // If the key is backspace, go back to the parent
         const onKeyDown = (event: KeyboardEvent) => {
             if(/^[0-9]$/i.test(event.key)) {
                 console.log(event.key);

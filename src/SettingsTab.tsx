@@ -1,9 +1,16 @@
 import { useState } from 'react'
 import LinksEditor from './LinksEditor';
 
+/**
+ * Component for the settings tab.
+ * This component contains a button to toggle the links editor.
+ *
+ * @returns {ReactNode} The settings tab component.
+ */
 function SettingsTab() {
     const [linksEditorOpened, setLinksEditorOpened] = useState(false);
 
+    // Function to toggle the links editor
     const toggleLinksEditor = () => {
         setLinksEditorOpened(linksEditorOpened ? false : true);
     }
