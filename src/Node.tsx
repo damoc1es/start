@@ -1,4 +1,4 @@
-import { NodeDescriptor } from "./local_storage_types";
+import { NodeDescriptor } from "./common_types";
 
 /**
  * Types for the node class.

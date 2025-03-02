@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { LinkList } from "./LinkList";
 import { Node } from "./Node";
-import { LINKS_LOCAL_STORAGE, DEFAULT_LINKS } from "./constants";
+import { getLinksList } from "./local_storage_handler";
 import { SettingsTab } from "./SettingsTab";
 import settingsIcon from "./assets/settings.svg";
 
@@ -15,11 +15,8 @@ import settingsIcon from "./assets/settings.svg";
  * @returns {ReactNode} The main component of the application.
  */
 export function App() {
-  const savedLinks = localStorage.getItem(LINKS_LOCAL_STORAGE);
   // Initialize the node tree with the saved links or the default JSON
-  const node: Node = Node.fromJson(
-    savedLinks ? JSON.parse(savedLinks) : DEFAULT_LINKS
-  );
+  const node: Node = Node.fromJson(getLinksList());
   const [settingsTabOpened, setSettingsTabOpened] = useState(false);
 
   // Function to toggle the settings tab

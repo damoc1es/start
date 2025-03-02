@@ -1,4 +1,4 @@
-import { NodeDescriptor, ColorSchemeDescriptor } from "./local_storage_types";
+import { NodeDescriptor, ColorSchemeDescriptor } from "./common_types";
 
 // Key for the local storage of the links list
 export const LINKS_LOCAL_STORAGE = "linksList";
@@ -11,6 +11,21 @@ export const LINK_LIST_CHARS = {
   LINK: " → ", // used for links
   TREE: " ⊧ ", // used for trees
   NIL: "●", // used for nodes after the 9th one in a view
+};
+
+// Default JSON for an empty link list
+export const EMPTY_LINKS: NodeDescriptor = {
+  name: "list",
+  children: [],
+};
+
+// Default color scheme
+export const DEFAULT_COLOR_SCHEME: ColorSchemeDescriptor = {
+  background: "#1a1423",
+  color: "#e5be9e",
+  backspace: "#b4a6ab",
+  accent: "#e56a75",
+  inactive: "#3d314a",
 };
 
 // Default JSON for the link list
@@ -105,12 +120,4 @@ export const DEFAULT_LINKS: NodeDescriptor = {
       ],
     },
   ],
-};
-
-export const DEFAULT_COLOR_SCHEME: ColorSchemeDescriptor = {
-  background: "#1a1423",
-  color: "#e5be9e",
-  backspace: "#b4a6ab",
-  accent: "#e56a75",
-  inactive: "#3d314a",
 };
