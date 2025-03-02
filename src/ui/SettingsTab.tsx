@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { LinksEditor } from "./LinksEditor";
+import { ColorsEditor } from "./ColorsEditor";
 
 enum SettingsTabState {
   GENERAL,
   LINKS_EDITOR,
+  COLORS_EDITOR,
 }
 
 /**
@@ -15,6 +17,23 @@ enum SettingsTabState {
 export function SettingsTab() {
   const [tabState, setTabState] = useState(SettingsTabState.GENERAL);
 
+  const TabBtn = ({
+    state,
+    label,
+  }: {
+    state: SettingsTabState;
+    label: string;
+  }) => {
+    return (
+      <button
+        className={tabState == state ? "selected" : ""}
+        onClick={() => setTabState(state)}
+      >
+        {label}
+      </button>
+    );
+  };
+
   const settingsTabContent = () => {
     switch (tabState) {
       case SettingsTabState.GENERAL:
@@ -23,6 +42,12 @@ export function SettingsTab() {
         return (
           <div className="linksEditor">
             <LinksEditor />
+          </div>
+        );
+      case SettingsTabState.COLORS_EDITOR:
+        return (
+          <div className="colorsEditor">
+            <ColorsEditor />
           </div>
         );
       default:
@@ -39,20 +64,9 @@ export function SettingsTab() {
       Code for this is available at{" "}
       <a href="https://github.com/damoc1es/start">damoc1es/start</a>.<br />
       <br />
-      {tabState == SettingsTabState.GENERAL ? (
-        <button className="selected">General Settings</button>
-      ) : (
-        <button onClick={() => setTabState(SettingsTabState.GENERAL)}>
-          General Settings
-        </button>
-      )}{" "}
-      {tabState == SettingsTabState.LINKS_EDITOR ? (
-        <button className="selected">Links Editor</button>
-      ) : (
-        <button onClick={() => setTabState(SettingsTabState.LINKS_EDITOR)}>
-          Links Editor
-        </button>
-      )}{" "}
+      <TabBtn state={SettingsTabState.GENERAL} label="General Settings" />{" "}
+      <TabBtn state={SettingsTabState.LINKS_EDITOR} label="Links Editor" />{" "}
+      <TabBtn state={SettingsTabState.COLORS_EDITOR} label="Colors Editor" />
       <br /> <br />
       {settingsTabContent()}
     </>

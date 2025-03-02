@@ -6,6 +6,9 @@ export const LINKS_LOCAL_STORAGE = "linksList";
 // Key for the local storage of the color scheme
 export const COLOR_SCHEME_LOCAL_STORAGE = "colorScheme";
 
+// Key for the local storage of the color scheme
+export const CUSTOM_COLOR_SCHEME_LOCAL_STORAGE = "customColorScheme";
+
 // Constants for the characters used in the list
 export const LINK_LIST_CHARS = {
   LINK: " → ", // used for links
