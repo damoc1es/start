@@ -221,7 +221,7 @@ function LinksLevel({ node }: { node: NodeDescriptor }) {
  *
  * @returns {ReactNode} The links editor component.
  */
-function LinksEditor() {
+export function LinksEditor() {
   const storedNode = localStorage.getItem(LINKS_LOCAL_STORAGE);
   const [node, setNode] = useState(
     storedNode != null
@@ -258,5 +258,3 @@ function LinksEditor() {
     </>
   );
 }
-
-export default LinksEditor;

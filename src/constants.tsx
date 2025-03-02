@@ -13,7 +13,7 @@ export const LINK_LIST_CHARS = {
   NIL: "●", // used for nodes after the 9th one in a view
 };
 
-// Default JSON for the list
+// Default JSON for the link list
 export const DEFAULT_LINKS: NodeDescriptor = {
   name: "list",
   children: [

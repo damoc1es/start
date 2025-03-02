@@ -8,7 +8,7 @@ import { LINK_LIST_CHARS } from "./constants";
  * @param treeNode The node to render the list from.
  * @returns {ReactNode} The list of nodes component.
  */
-function LinkList({ treeNode }: { treeNode: Node }) {
+export function LinkList({ treeNode }: { treeNode: Node }) {
   const [node, setNode] = useState(treeNode);
   const [decimalCode, setDecimalCode] = useState("");
 
@@ -107,5 +107,3 @@ function LinkList({ treeNode }: { treeNode: Node }) {
     </>
   );
 }
-
-export default LinkList;

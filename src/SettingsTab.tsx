@@ -1,5 +1,5 @@
 import { useState } from "react";
-import LinksEditor from "./LinksEditor";
+import { LinksEditor } from "./LinksEditor";
 
 /**
  * Component for the settings tab.
@@ -7,7 +7,7 @@ import LinksEditor from "./LinksEditor";
  *
  * @returns {ReactNode} The settings tab component.
  */
-function SettingsTab() {
+export function SettingsTab() {
   const [linksEditorOpened, setLinksEditorOpened] = useState(false);
 
   // Function to toggle the links editor
@@ -32,5 +32,3 @@ function SettingsTab() {
     </>
   );
 }
-
-export default SettingsTab;
