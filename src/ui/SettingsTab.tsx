@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { LinksEditor } from "./LinksEditor";
 
+enum SettingsTabState {
+  GENERAL,
+  LINKS_EDITOR,
+}
+
 /**
  * Component for the settings tab.
  * This component contains a button to toggle the links editor.
@@ -8,27 +13,48 @@ import { LinksEditor } from "./LinksEditor";
  * @returns {ReactNode} The settings tab component.
  */
 export function SettingsTab() {
-  const [linksEditorOpened, setLinksEditorOpened] = useState(false);
+  const [tabState, setTabState] = useState(SettingsTabState.GENERAL);
 
-  // Function to toggle the links editor
-  const toggleLinksEditor = () => {
-    setLinksEditorOpened(linksEditorOpened ? false : true);
+  const settingsTabContent = () => {
+    switch (tabState) {
+      case SettingsTabState.GENERAL:
+        return <></>;
+      case SettingsTabState.LINKS_EDITOR:
+        return (
+          <div className="linksEditor">
+            <LinksEditor />
+          </div>
+        );
+      default:
+        return <></>;
+    }
   };
 
   return (
     <>
-      {!linksEditorOpened ? (
-        <button onClick={toggleLinksEditor}>Go to Links Editor</button>
+      This website can be used as a start page for your browser.
+      <br />
+      The only data stored is in local storage, not sent to any server.
+      <br />
+      Code for this is available at{" "}
+      <a href="https://github.com/damoc1es/start">damoc1es/start</a>.<br />
+      <br />
+      {tabState == SettingsTabState.GENERAL ? (
+        <button className="selected">General Settings</button>
       ) : (
-        <>
-          <button onClick={toggleLinksEditor}>Back to General Settings</button>
-          <br />
-          <br />
-          <div className="linksEditor">
-            <LinksEditor />
-          </div>
-        </>
-      )}
+        <button onClick={() => setTabState(SettingsTabState.GENERAL)}>
+          General Settings
+        </button>
+      )}{" "}
+      {tabState == SettingsTabState.LINKS_EDITOR ? (
+        <button className="selected">Links Editor</button>
+      ) : (
+        <button onClick={() => setTabState(SettingsTabState.LINKS_EDITOR)}>
+          Links Editor
+        </button>
+      )}{" "}
+      <br /> <br />
+      {settingsTabContent()}
     </>
   );
 }
