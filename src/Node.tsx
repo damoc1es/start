@@ -1,3 +1,5 @@
+import { NodeDescriptor } from "./local_storage_types";
+
 /**
  * Types for the node class.
  * Tree nodes can have children, link nodes can have a link.
@@ -5,15 +7,6 @@
 export enum NodeType {
   LINK,
   TREE,
-}
-
-/**
- * Descriptor for a link list.
- */
-export interface LinkListDescriptor {
-  name: string;
-  link?: string;
-  children?: Array<LinkListDescriptor>;
 }
 
 /**
@@ -55,7 +48,7 @@ export class Node {
    * @param json JSON object to create the node from.
    * @returns The node created from the JSON object.
    */
-  public static fromJson(json: LinkListDescriptor): Node {
+  public static fromJson(json: NodeDescriptor): Node {
     if (json.link !== undefined) {
       return new Node(json.name, json.link);
     }

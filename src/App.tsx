@@ -1,7 +1,7 @@
 import { useState } from "react";
 import LinkList from "./LinkList";
 import { Node } from "./Node";
-import { LINKS_LOCAL_STORAGE, DEFAULT_JSON } from "./constants";
+import { LINKS_LOCAL_STORAGE, DEFAULT_LINKS } from "./constants";
 import SettingsTab from "./SettingsTab";
 import settingsIcon from "./assets/settings.svg";
 
@@ -18,7 +18,7 @@ function App() {
   const savedLinks = localStorage.getItem(LINKS_LOCAL_STORAGE);
   // Initialize the node tree with the saved links or the default JSON
   const node: Node = Node.fromJson(
-    savedLinks ? JSON.parse(savedLinks) : DEFAULT_JSON
+    savedLinks ? JSON.parse(savedLinks) : DEFAULT_LINKS
   );
   const [settingsTabOpened, setSettingsTabOpened] = useState(false);
 

@@ -1,5 +1,10 @@
+import { NodeDescriptor, ColorSchemeDescriptor } from "./local_storage_types";
+
 // Key for the local storage of the links list
 export const LINKS_LOCAL_STORAGE = "linksList";
+
+// Key for the local storage of the color scheme
+export const COLOR_SCHEME_LOCAL_STORAGE = "colorScheme";
 
 // Constants for the characters used in the list
 export const LINK_LIST_CHARS = {
@@ -9,7 +14,7 @@ export const LINK_LIST_CHARS = {
 };
 
 // Default JSON for the list
-export const DEFAULT_JSON = {
+export const DEFAULT_LINKS: NodeDescriptor = {
   name: "list",
   children: [
     {
@@ -100,4 +105,12 @@ export const DEFAULT_JSON = {
       ],
     },
   ],
+};
+
+export const DEFAULT_COLOR_SCHEME: ColorSchemeDescriptor = {
+  background: "#1a1423",
+  color: "#e5be9e",
+  backspace: "#b4a6ab",
+  accent: "#e56a75",
+  inactive: "#3d314a",
 };

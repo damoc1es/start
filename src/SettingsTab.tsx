@@ -17,11 +17,11 @@ function SettingsTab() {
 
   return (
     <>
-      {linksEditorOpened ? (
+      {!linksEditorOpened ? (
         <button onClick={toggleLinksEditor}>Go to Links Editor</button>
       ) : (
         <>
-          <button onClick={toggleLinksEditor}>Back to All Settings</button>
+          <button onClick={toggleLinksEditor}>Back to General Settings</button>
           <br />
           <br />
           <div className="linksEditor">

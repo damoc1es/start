@@ -1,7 +1,7 @@
 :root {
   --background: #1a1423;
   --color: #e5be9e;
-  --backspace-color: #b4a6ab;
+  --backspace: #b4a6ab;
   --accent: #e56a75;
   --inactive: #3d314a;
 
@@ -61,11 +61,11 @@ li {
   }
 
   &.backspaceItem {
-    color: var(--backspace-color);
+    color: var(--backspace);
     margin-bottom: 0.2em;
 
     a {
-      color: var(--backspace-color);
+      color: var(--backspace);
     }
 
     &.inactive {
@@ -99,12 +99,12 @@ li {
   }
 
   input {
-    color: var(--backspace-color);
+    color: var(--backspace);
     font-family: var(--font-sans-serif);
     font-size: 1em;
     background-color: transparent;
     border: none;
-    border-bottom: 1px solid var(--backspace-color);
+    border-bottom: 1px solid var(--backspace);
   }
 
   button {
@@ -133,7 +133,7 @@ button {
   }
 
   &:disabled {
-    --btn-bg: var(--backspace-color);
+    --btn-bg: var(--backspace);
     cursor: initial;
 
     &:hover {

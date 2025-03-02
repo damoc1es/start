@@ -1,5 +1,5 @@
 import { useState, useReducer } from "react";
-import { LinkListDescriptor } from "./Node";
+import { NodeDescriptor } from "./local_storage_types";
 import { LINKS_LOCAL_STORAGE } from "./constants";
 
 /**
@@ -43,7 +43,7 @@ function LinkNew({ onAdd }: { onAdd: (name: string, link: string) => void }) {
  * Properties for the link item component.
  */
 interface LinkItemProps {
-  node: LinkListDescriptor;
+  node: NodeDescriptor;
   onRemove: () => void;
   onSave: () => void;
   onUp?: () => void;
@@ -125,11 +125,11 @@ function LinkItem({ node, onRemove, onSave, onUp, onDown }: LinkItemProps) {
  * @param node The node to render and edit.
  * @returns {ReactNode} The links level component.
  */
-function LinksLevel({ node }: { node: LinkListDescriptor }) {
+function LinksLevel({ node }: { node: NodeDescriptor }) {
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
 
   // Function to remove a node
-  const removeNode = (subnode: LinkListDescriptor) => {
+  const removeNode = (subnode: NodeDescriptor) => {
     if (node.children) {
       const index = node.children.indexOf(subnode);
       node.children.splice(index, 1);
@@ -155,7 +155,7 @@ function LinksLevel({ node }: { node: LinkListDescriptor }) {
   };
 
   // Function to move a node up
-  const moveNodeUp = (subnode: LinkListDescriptor) => {
+  const moveNodeUp = (subnode: NodeDescriptor) => {
     if (node.children) {
       const index = node.children.indexOf(subnode);
       if (index > 0) {
@@ -169,7 +169,7 @@ function LinksLevel({ node }: { node: LinkListDescriptor }) {
   };
 
   // Function to move a node down
-  const moveNodeDown = (subnode: LinkListDescriptor) => {
+  const moveNodeDown = (subnode: NodeDescriptor) => {
     if (node.children) {
       const index = node.children.indexOf(subnode);
       if (index >= 0 && index != node.children.length - 1) {
@@ -186,11 +186,7 @@ function LinksLevel({ node }: { node: LinkListDescriptor }) {
     <div className="linksEditor">
       {node.children &&
         node.children.map(
-          (
-            subnode: LinkListDescriptor,
-            index: number,
-            arr: LinkListDescriptor[]
-          ) => (
+          (subnode: NodeDescriptor, index: number, arr: NodeDescriptor[]) => (
             <LinkItem
               key={crypto.randomUUID()}
               node={subnode}
