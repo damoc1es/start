@@ -21,6 +21,7 @@
 - Dynamic link list creator/editor:
   - Edit, move up/down links;
   - Export/import links list.
+- Back browser button now goes back to the parent link list if possible
 
 ### Changed
 

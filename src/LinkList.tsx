@@ -23,6 +23,7 @@ function LinkList({ treeNode } : {treeNode: Node}) {
 
     // Function to handle the node move to a another tree
     const handleNodeMove = useCallback((node: Node, i: number) => {
+        history.pushState({}, "");
         setNode(node);
         setDecimalCode(`${decimalCode}${i < 10 ? i : NIL_CHARACTER}`);
     }, [decimalCode]);
@@ -63,9 +64,11 @@ function LinkList({ treeNode } : {treeNode: Node}) {
         };
 
         document.addEventListener('keydown', onKeyDown);
+        window.addEventListener('popstate', goBack);
 
         return () => {
             document.removeEventListener('keydown', onKeyDown);
+            window.removeEventListener('popstate', goBack);
         };
     }, [goTo, goBack]);
 
