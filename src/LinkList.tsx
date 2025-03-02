@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { NodeType, Node } from "./Node";
+import { Node } from "./Node";
 import { LINK_LIST_CHARS } from "./constants";
 
 /**
@@ -13,8 +13,8 @@ function LinkList({ treeNode }: { treeNode: Node }) {
   const [decimalCode, setDecimalCode] = useState("");
 
   // The origin node must be a tree
-  if (treeNode.type !== NodeType.TREE) {
-    console.error("ERROR: NodeType is not TREE");
+  if (treeNode.getType() !== Node.Type.TREE) {
+    console.error("ERROR: Type is not TREE");
   }
 
   // Function to handle the node move to a another tree

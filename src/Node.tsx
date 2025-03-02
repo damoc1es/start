@@ -4,7 +4,7 @@ import { NodeDescriptor } from "./local_storage_types";
  * Types for the node class.
  * Tree nodes can have children, link nodes can have a link.
  */
-export enum NodeType {
+enum Type {
   LINK,
   TREE,
 }
@@ -13,9 +13,10 @@ export enum NodeType {
  * Node class for the link list.
  */
 export class Node {
+  static readonly Type = Type;
+
   name: string;
   data: string | Array<Node>;
-  type: NodeType;
   parent?: Node;
 
   /**
@@ -29,16 +30,21 @@ export class Node {
     this.name = name;
     this.data = data;
 
-    if (typeof data === "string") {
-      this.type = NodeType.LINK;
-    } else {
-      this.type = NodeType.TREE;
+    if (typeof data !== "string") {
       for (const child of data) {
         child.parent = this;
       }
     }
 
     this.parent = parent;
+  }
+
+  public getType(): Type {
+    if (typeof this.data === "string") {
+      return Type.LINK;
+    }
+
+    return Type.TREE;
   }
 
   /**
