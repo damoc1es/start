@@ -1,10 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { NodeType, Node } from "./Node";
-
-// Constants for the characters used in the list
-const LINK_CHARACTER = " → "; // used for links
-const TREE_CHARACTER = " ⊧ "; // used for trees
-const NIL_CHARACTER = "●"; // used for nodes after the 9th one in a view
+import { LINK_LIST_CHARS } from "./constants";
 
 /**
  * List of nodes (links/trees) component.
@@ -26,7 +22,7 @@ function LinkList({ treeNode }: { treeNode: Node }) {
     (node: Node, i: number) => {
       history.pushState({}, "");
       setNode(node);
-      setDecimalCode(`${decimalCode}${i < 10 ? i : NIL_CHARACTER}`);
+      setDecimalCode(`${decimalCode}${i < 10 ? i : LINK_LIST_CHARS.NIL}`);
     },
     [decimalCode]
   );
@@ -94,14 +90,14 @@ function LinkList({ treeNode }: { treeNode: Node }) {
             // I still need to re-render everything, but check if there is another way
             <li key={crypto.randomUUID()}>
               {decimalCode != "" && <>{decimalCode}.</>}
-              {i < 10 ? i : NIL_CHARACTER}
+              {i < 10 ? i : LINK_LIST_CHARS.NIL}
               {typeof object.data === "string" ? (
                 <>
-                  {LINK_CHARACTER} <a href={object.data}>{object.name}</a>
+                  {LINK_LIST_CHARS.LINK} <a href={object.data}>{object.name}</a>
                 </>
               ) : (
                 <>
-                  {TREE_CHARACTER}{" "}
+                  {LINK_LIST_CHARS.TREE}{" "}
                   <a onClick={() => handleNodeMove(object, i)}>{object.name}</a>
                 </>
               )}

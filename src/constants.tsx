@@ -1,4 +1,15 @@
-const defaultJson = {
+// Key for the local storage of the links list
+export const LINKS_LOCAL_STORAGE = "linksList";
+
+// Constants for the characters used in the list
+export const LINK_LIST_CHARS = {
+  LINK: " → ", // used for links
+  TREE: " ⊧ ", // used for trees
+  NIL: "●", // used for nodes after the 9th one in a view
+};
+
+// Default JSON for the list
+export const DEFAULT_JSON = {
   name: "list",
   children: [
     {
@@ -90,5 +101,3 @@ const defaultJson = {
     },
   ],
 };
-
-export default defaultJson;
