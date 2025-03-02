@@ -1,5 +1,5 @@
-import { useState, useReducer } from 'react'
-import { LinkListDescriptor } from './Node'
+import { useState, useReducer } from "react";
+import { LinkListDescriptor } from "./Node";
 
 /**
  * Component for the add new node item.
@@ -7,35 +7,46 @@ import { LinkListDescriptor } from './Node'
  * @param onAdd Function to add a new node.
  * @returns {ReactNode} The add new node item component.
  */
-function LinkNew({ onAdd } : {onAdd: (name: string, link: string) => void}) {
-    const [name, setName] = useState('');
-    const [link, setLink] = useState('');
+function LinkNew({ onAdd }: { onAdd: (name: string, link: string) => void }) {
+  const [name, setName] = useState("");
+  const [link, setLink] = useState("");
 
-    // Function to add a new node
-    const addNode = () => {
-        onAdd(name, link);
-        setName('');
-        setLink('');
-    }
+  // Function to add a new node
+  const addNode = () => {
+    onAdd(name, link);
+    setName("");
+    setLink("");
+  };
 
-    return (
-        <span>
-            <button onClick={addNode} disabled={name == ''}>+</button>
-            <input value={name} onChange={e => setName(e.target.value)} placeholder='Name'/> <br/>
-            <input value={link} onChange={e => setLink(e.target.value)} placeholder='Link, or empty for sublist'/>
-        </span>
-    )
+  return (
+    <span>
+      <button onClick={addNode} disabled={name == ""}>
+        +
+      </button>
+      <input
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Name"
+      />{" "}
+      <br />
+      <input
+        value={link}
+        onChange={(e) => setLink(e.target.value)}
+        placeholder="Link, or empty for sublist"
+      />
+    </span>
+  );
 }
 
 /**
  * Properties for the link item component.
  */
 interface LinkItemProps {
-    node: LinkListDescriptor,
-    onRemove: () => void,
-    onSave: () => void,
-    onUp?: () => void,
-    onDown?: () => void
+  node: LinkListDescriptor;
+  onRemove: () => void;
+  onSave: () => void;
+  onUp?: () => void;
+  onDown?: () => void;
 }
 
 /**
@@ -44,54 +55,67 @@ interface LinkItemProps {
  * @param props Node to render and functions to modify place within list.
  * @returns {ReactNode} The link item component.
  */
-function LinkItem({ node, onRemove, onSave, onUp, onDown} : LinkItemProps) {
-    const [editMode, setEditMode] = useState(false);
-    const [name, setName] = useState(node.name);
-    const [link, setLink] = useState(node.link);
+function LinkItem({ node, onRemove, onSave, onUp, onDown }: LinkItemProps) {
+  const [editMode, setEditMode] = useState(false);
+  const [name, setName] = useState(node.name);
+  const [link, setLink] = useState(node.link);
 
-    // Function to edit the node
-    const onEdit = () => {
-        if(editMode) {
-            node.name = name;
-            if(node.link) {
-                node.link = link;
-            }
-            onSave();
-        }
-
-        setEditMode(!editMode);
+  // Function to edit the node
+  const onEdit = () => {
+    if (editMode) {
+      node.name = name;
+      if (node.link) {
+        node.link = link;
+      }
+      onSave();
     }
 
-    // Function to cancel the edit
-    const onCancelEdit = () => {
-        setEditMode(!editMode);
-        setName(node.name);
-        if(node.link) {
-            setLink(node.link);
-        }
+    setEditMode(!editMode);
+  };
+
+  // Function to cancel the edit
+  const onCancelEdit = () => {
+    setEditMode(!editMode);
+    setName(node.name);
+    if (node.link) {
+      setLink(node.link);
     }
+  };
 
-    return (
-        <span>
-            <button onClick={onRemove}>-</button>
-            <button disabled={onUp ? false : true} onClick={onUp}>↑</button>
-            <button disabled={onDown ? false : true} onClick={onDown}>↓</button>
+  return (
+    <span>
+      <button onClick={onRemove}>-</button>
+      <button disabled={onUp ? false : true} onClick={onUp}>
+        ↑
+      </button>
+      <button disabled={onDown ? false : true} onClick={onDown}>
+        ↓
+      </button>
 
-            {!editMode ?
-                <>{node.name} <a onClick={onEdit}>✎</a></>
-            :
-                <>
-                    <input value={name} onChange={e => setName(e.target.value)} placeholder='Name'/>
-                    {node.link && <input value={link} onChange={e => setLink(e.target.value)} placeholder='Link'/>}
-                    <a onClick={onEdit}>🖫</a> <a onClick={onCancelEdit}>🗙</a>
-                </>
-            }
-            {
-                node.children &&
-                <LinksLevel node={node}/>
-            }
-        </span>
-    )
+      {!editMode ? (
+        <>
+          {node.name} <a onClick={onEdit}>✎</a>
+        </>
+      ) : (
+        <>
+          <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Name"
+          />
+          {node.link && (
+            <input
+              value={link}
+              onChange={(e) => setLink(e.target.value)}
+              placeholder="Link"
+            />
+          )}
+          <a onClick={onEdit}>🖫</a> <a onClick={onCancelEdit}>🗙</a>
+        </>
+      )}
+      {node.children && <LinksLevel node={node} />}
+    </span>
+  );
 }
 
 /**
@@ -100,72 +124,99 @@ function LinkItem({ node, onRemove, onSave, onUp, onDown} : LinkItemProps) {
  * @param node The node to render and edit.
  * @returns {ReactNode} The links level component.
  */
-function LinksLevel({ node } : {node: LinkListDescriptor}) {
-    const [, forceUpdate] = useReducer(x => x + 1, 0);
+function LinksLevel({ node }: { node: LinkListDescriptor }) {
+  const [, forceUpdate] = useReducer((x) => x + 1, 0);
 
-    // Function to remove a node
-    const removeNode = (subnode: LinkListDescriptor) => {
-        if(node.children) {
-            const index = node.children.indexOf(subnode);
-            node.children.splice(index, 1);
-            forceUpdate();
-        }
+  // Function to remove a node
+  const removeNode = (subnode: LinkListDescriptor) => {
+    if (node.children) {
+      const index = node.children.indexOf(subnode);
+      node.children.splice(index, 1);
+      forceUpdate();
     }
+  };
 
-    // Function to add a new node
-    const addNode = (name: string, link: string) => {
-        if(node.children) {
-            if(link == '') {
-                node.children.push({name: name, children: []});
-            } else {
-                node.children.push({name: name, link: link});
-            }
-            forceUpdate();
-        }
+  // Function to add a new node
+  const addNode = (name: string, link: string) => {
+    if (node.children) {
+      if (link == "") {
+        node.children.push({ name: name, children: [] });
+      } else {
+        node.children.push({ name: name, link: link });
+      }
+      forceUpdate();
     }
+  };
 
-    // Function to update the links
-    const updateLinks = () => {
+  // Function to update the links
+  const updateLinks = () => {
+    forceUpdate();
+  };
+
+  // Function to move a node up
+  const moveNodeUp = (subnode: LinkListDescriptor) => {
+    if (node.children) {
+      const index = node.children.indexOf(subnode);
+      if (index > 0) {
+        [node.children[index], node.children[index - 1]] = [
+          node.children[index - 1],
+          node.children[index],
+        ];
         forceUpdate();
+      }
     }
+  };
 
-    // Function to move a node up
-    const moveNodeUp = (subnode: LinkListDescriptor) => {
-        if(node.children) {
-            const index = node.children.indexOf(subnode);
-            if(index > 0) {
-                [node.children[index], node.children[index-1]] = [node.children[index-1], node.children[index]];
-                forceUpdate();
-            }
-        }
+  // Function to move a node down
+  const moveNodeDown = (subnode: LinkListDescriptor) => {
+    if (node.children) {
+      const index = node.children.indexOf(subnode);
+      if (index >= 0 && index != node.children.length - 1) {
+        [node.children[index], node.children[index + 1]] = [
+          node.children[index + 1],
+          node.children[index],
+        ];
+        forceUpdate();
+      }
     }
+  };
 
-    // Function to move a node down
-    const moveNodeDown = (subnode: LinkListDescriptor) => {
-        if(node.children) {
-            const index = node.children.indexOf(subnode);
-            if(index >= 0 && index != node.children.length-1) {
-                [node.children[index], node.children[index+1]] = [node.children[index+1], node.children[index]];
-                forceUpdate();
-            }
-        }
-    }
-
-    return (
-        <div className='linksEditor'>
-            {
-                node.children && node.children.map((subnode: LinkListDescriptor, index: number, arr: LinkListDescriptor[]) =>
-                    <LinkItem key={crypto.randomUUID()}
-                        node={subnode}
-                        onRemove={() => {removeNode(subnode)}}
-                        onSave={updateLinks}
-                        onUp={index == 0 || arr.length == 1 ? undefined : () => {moveNodeUp(subnode)}}
-                        onDown={index == arr.length-1 || arr.length == 1 ? undefined : () => {moveNodeDown(subnode)}}/>
-                )
-            }
-            <LinkNew onAdd={addNode}/>
-        </div>
-    )
+  return (
+    <div className="linksEditor">
+      {node.children &&
+        node.children.map(
+          (
+            subnode: LinkListDescriptor,
+            index: number,
+            arr: LinkListDescriptor[]
+          ) => (
+            <LinkItem
+              key={crypto.randomUUID()}
+              node={subnode}
+              onRemove={() => {
+                removeNode(subnode);
+              }}
+              onSave={updateLinks}
+              onUp={
+                index == 0 || arr.length == 1
+                  ? undefined
+                  : () => {
+                      moveNodeUp(subnode);
+                    }
+              }
+              onDown={
+                index == arr.length - 1 || arr.length == 1
+                  ? undefined
+                  : () => {
+                      moveNodeDown(subnode);
+                    }
+              }
+            />
+          )
+        )}
+      <LinkNew onAdd={addNode} />
+    </div>
+  );
 }
 
 /**
@@ -174,35 +225,41 @@ function LinksLevel({ node } : {node: LinkListDescriptor}) {
  * @returns {ReactNode} The links editor component.
  */
 function LinksEditor() {
-    const storedNode = localStorage.getItem('linksList');
-    const [node, setNode] = useState(storedNode != null ? JSON.parse(storedNode) : {name: 'Links', children: []});
+  const storedNode = localStorage.getItem("linksList");
+  const [node, setNode] = useState(
+    storedNode != null
+      ? JSON.parse(storedNode)
+      : { name: "Links", children: [] }
+  );
 
-    // Function to save the links to local storage
-    const onSave = () => {
-        localStorage.setItem('linksList', JSON.stringify(node))
-        window.location.reload();
-    }
+  // Function to save the links to local storage
+  const onSave = () => {
+    localStorage.setItem("linksList", JSON.stringify(node));
+    window.location.reload();
+  };
 
-    // Function to export the links to the clipboard
-    const onExport = () => {
-        navigator.clipboard.writeText(JSON.stringify(node));
-    }
+  // Function to export the links to the clipboard
+  const onExport = () => {
+    navigator.clipboard.writeText(JSON.stringify(node));
+  };
 
-    // Function to import the links from the clipboard
-    const onImport = () => {
-        navigator.clipboard.readText().then((clipboardText) => {
-            setNode(JSON.parse(clipboardText));
-        });
-    }
+  // Function to import the links from the clipboard
+  const onImport = () => {
+    navigator.clipboard.readText().then((clipboardText) => {
+      setNode(JSON.parse(clipboardText));
+    });
+  };
 
-    return (
-        <>
-            <button onClick={onExport}>Export to Clipboard</button> <button onClick={onImport}>Import from Clipboard</button>
-            <br/><br/>
-            <LinksLevel node={node}/> <br/>
-            <button onClick={onSave}>Save & Exit</button>
-        </>
-    )
+  return (
+    <>
+      <button onClick={onExport}>Export to Clipboard</button>{" "}
+      <button onClick={onImport}>Import from Clipboard</button>
+      <br />
+      <br />
+      <LinksLevel node={node} /> <br />
+      <button onClick={onSave}>Save & Exit</button>
+    </>
+  );
 }
 
-export default LinksEditor
+export default LinksEditor;

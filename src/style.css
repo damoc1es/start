@@ -2,11 +2,11 @@
   --background: #1a1423;
   --color: #e5be9e;
   --backspace-color: #b4a6ab;
-  --accent: #E56A75;
+  --accent: #e56a75;
   --inactive: #3d314a;
 
   --font-sans-serif: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  --font-monospace: 'Fira Code', 'Fira Mono', monospace;
+  --font-monospace: "Fira Code", "Fira Mono", monospace;
 
   font-family: var(--font-sans-serif);
   line-height: 1.5;
@@ -27,7 +27,8 @@
   flex-direction: column;
   align-items: center;
 
-  > section, > nav {
+  > section,
+  > nav {
     width: min(98vw, 600px);
   }
 }
