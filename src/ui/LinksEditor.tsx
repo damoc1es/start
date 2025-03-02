@@ -1,11 +1,11 @@
 import { useState, useReducer } from "react";
-import { NodeDescriptor } from "./common_types";
-import { EMPTY_LINKS } from "./constants";
+import { NodeDescriptor } from "../types/common_types";
+import { EMPTY_LINKS } from "../config/constants";
 import {
   existsLinksList,
   getLinksList,
   saveLinksList,
-} from "./local_storage_handler";
+} from "../utils/local_storage_handler";
 
 /**
  * Component for the add new node item.

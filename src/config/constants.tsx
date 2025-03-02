@@ -1,4 +1,4 @@
-import { NodeDescriptor, ColorSchemeDescriptor } from "./common_types";
+import { NodeDescriptor, ColorSchemeDescriptor } from "../types/common_types";
 
 // Key for the local storage of the links list
 export const LINKS_LOCAL_STORAGE = "linksList";

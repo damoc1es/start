@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
-import { Node } from "./Node";
-import { LINK_LIST_CHARS } from "./constants";
+import { Node } from "../types/node";
+import { LINK_LIST_CHARS } from "../config/constants";
 
 /**
  * List of nodes (links/trees) component.

@@ -1,5 +1,5 @@
-import { NodeDescriptor } from "./common_types";
-import { LINKS_LOCAL_STORAGE, DEFAULT_LINKS } from "./constants";
+import { NodeDescriptor } from "../types/common_types";
+import { LINKS_LOCAL_STORAGE, DEFAULT_LINKS } from "../config/constants";
 
 export function getLinksList(): NodeDescriptor {
   const fromLocal = localStorage.getItem(LINKS_LOCAL_STORAGE);

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { LinkList } from "./LinkList";
-import { Node } from "./Node";
-import { getLinksList } from "./local_storage_handler";
+import { Node } from "../types/node";
+import { getLinksList } from "../utils/local_storage_handler";
 import { SettingsTab } from "./SettingsTab";
-import settingsIcon from "./assets/settings.svg";
+import settingsIcon from "../assets/settings.svg";
 
 /**
  * Main component of the application.
