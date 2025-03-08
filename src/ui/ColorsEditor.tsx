@@ -1,12 +1,7 @@
 import { useState } from "react";
-import { ColorSchemes } from "../config/theme_colors";
-import {
-  getColorScheme,
-  getCustomColorScheme,
-  saveColorScheme,
-  saveCustomColorScheme,
-} from "../utils/local_storage_handler";
 import * as Consts from "../config/constants";
+import { ColorSchemes } from "../config/theme_colors";
+import * as Storage from "../utils/local_storage_handler";
 
 /**
  * Component for the colors editor.
@@ -14,9 +9,11 @@ import * as Consts from "../config/constants";
  * @returns {ReactNode} The colors editor component.
  */
 export function ColorsEditor() {
-  const [selectedScheme, setSelectedScheme] = useState(getColorScheme());
+  const [selectedScheme, setSelectedScheme] = useState(
+    Storage.getColorScheme()
+  );
 
-  const customColorScheme = getCustomColorScheme();
+  const customColorScheme = Storage.getCustomColorScheme();
 
   // TODO: find a way to dynamically create the keys for the custom colors
   const customColors = {
@@ -40,10 +37,10 @@ export function ColorsEditor() {
   // Function to save the color scheme to local storage
   const onSave = () => {
     if (selectedScheme === Consts.CUSTOM_SCHEME_NAME) {
-      saveColorScheme(selectedScheme);
+      Storage.saveColorScheme(selectedScheme);
 
       // TODO: find a way to dynamically create the keys for the custom colors
-      saveCustomColorScheme({
+      Storage.saveCustomColorScheme({
         background: customColors.background[0],
         color: customColors.color[0],
         backspace: customColors.backspace[0],
@@ -51,7 +48,7 @@ export function ColorsEditor() {
         inactive: customColors.inactive[0],
       });
     } else {
-      saveColorScheme(selectedScheme);
+      Storage.saveColorScheme(selectedScheme);
     }
     window.location.reload();
   };

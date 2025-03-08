@@ -1,11 +1,7 @@
 import { useState, useReducer } from "react";
+import * as Consts from "../config/constants";
 import { NodeDescriptor } from "../types/common_types";
-import { EMPTY_LINKS } from "../config/constants";
-import {
-  existsLinksList,
-  getLinksList,
-  saveLinksList,
-} from "../utils/local_storage_handler";
+import * as Storage from "../utils/local_storage_handler";
 
 /**
  * Component for the add new node item.
@@ -228,12 +224,12 @@ function LinksLevel({ node }: { node: NodeDescriptor }) {
  */
 export function LinksEditor() {
   const [node, setNode] = useState(
-    existsLinksList() ? getLinksList() : EMPTY_LINKS
+    Storage.existsLinksList() ? Storage.getLinksList() : Consts.EMPTY_LINKS
   );
 
   // Function to save the links to local storage
   const onSave = () => {
-    saveLinksList(node);
+    Storage.saveLinksList(node);
     window.location.reload();
   };
 

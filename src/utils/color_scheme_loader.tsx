@@ -1,10 +1,10 @@
+import * as Storage from "./local_storage_handler";
 import { ColorSchemes } from "../config/theme_colors";
-import { getCustomColorScheme } from "./local_storage_handler";
 
 export function loadColorScheme(colorScheme: string) {
   const scheme =
     colorScheme === "Custom"
-      ? getCustomColorScheme()
+      ? Storage.getCustomColorScheme()
       : colorScheme in ColorSchemes
       ? ColorSchemes[colorScheme]
       : ColorSchemes["Original"];

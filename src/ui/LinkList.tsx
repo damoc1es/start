@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
+import * as Consts from "../config/constants";
 import { Node } from "../types/node";
-import { LINK_LIST_CHARS } from "../config/constants";
 
 /**
  * List of nodes (links/trees) component.
@@ -22,7 +22,9 @@ export function LinkList({ treeNode }: { treeNode: Node }) {
     (node: Node, i: number) => {
       history.pushState({}, "");
       setNode(node);
-      setDecimalCode(`${decimalCode}${i < 10 ? i : LINK_LIST_CHARS.NIL}`);
+      setDecimalCode(
+        `${decimalCode}${i < 10 ? i : Consts.LINK_LIST_CHARS.NIL}`
+      );
     },
     [decimalCode]
   );
@@ -90,14 +92,15 @@ export function LinkList({ treeNode }: { treeNode: Node }) {
             // I still need to re-render everything, but check if there is another way
             <li key={crypto.randomUUID()}>
               {decimalCode != "" && <>{decimalCode}.</>}
-              {i < 10 ? i : LINK_LIST_CHARS.NIL}
+              {i < 10 ? i : Consts.LINK_LIST_CHARS.NIL}
               {typeof object.data === "string" ? (
                 <>
-                  {LINK_LIST_CHARS.LINK} <a href={object.data}>{object.name}</a>
+                  {Consts.LINK_LIST_CHARS.LINK}{" "}
+                  <a href={object.data}>{object.name}</a>
                 </>
               ) : (
                 <>
-                  {LINK_LIST_CHARS.TREE}{" "}
+                  {Consts.LINK_LIST_CHARS.TREE}{" "}
                   <a onClick={() => handleNodeMove(object, i)}>{object.name}</a>
                 </>
               )}

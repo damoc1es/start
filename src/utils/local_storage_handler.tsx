@@ -1,5 +1,5 @@
-import { NodeDescriptor, ColorSchemeDescriptor } from "../types/common_types";
 import * as Consts from "../config/constants";
+import { NodeDescriptor, ColorSchemeDescriptor } from "../types/common_types";
 
 /// Query the links list from the local storage.
 

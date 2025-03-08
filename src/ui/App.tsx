@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { LinkList } from "./LinkList";
-import { Node } from "../types/node";
-import { getColorScheme, getLinksList } from "../utils/local_storage_handler";
-import { loadColorScheme } from "../utils/color_scheme_loader";
 import { SettingsTab } from "./SettingsTab";
+import { Node } from "../types/node";
+import { loadColorScheme } from "../utils/color_scheme_loader";
+import * as Storage from "../utils/local_storage_handler";
 import settingsIcon from "../assets/settings.svg";
 
 /**
@@ -17,11 +17,11 @@ import settingsIcon from "../assets/settings.svg";
  */
 export function App() {
   // Initialize the node tree with the saved links or the default JSON
-  const node: Node = Node.fromJson(getLinksList());
+  const node: Node = Node.fromJson(Storage.getLinksList());
   const [settingsTabOpened, setSettingsTabOpened] = useState(false);
 
   // Load the color scheme from local storage
-  loadColorScheme(getColorScheme());
+  loadColorScheme(Storage.getColorScheme());
 
   // Function to toggle the settings tab
   const toggleSettings = () => {
