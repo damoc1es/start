@@ -1,9 +1,9 @@
 :root {
-  --background: #1a1423;
-  --color: #e5be9e;
-  --backspace: #b4a6ab;
-  --accent: #e56a75;
-  --inactive: #3d314a;
+  --background: var(--custom-background, #1a1423);
+  --color: var(--custom-color, #e5be9e);
+  --backspace: var(--custom-backspace, #b4a6ab);
+  --accent: var(--custom-accent, #e56a75);
+  --inactive: var(--custom-inactive, #3d314a);
 
   --font-sans-serif: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   --font-monospace: "Fira Code", "Fira Mono", monospace;

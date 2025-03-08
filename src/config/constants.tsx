@@ -22,8 +22,14 @@ export const EMPTY_LINKS: NodeDescriptor = {
   children: [],
 };
 
+// Default color scheme name
+export const DEFAULT_COLOR_SCHEME: string = "Original";
+
+// Custom color scheme name
+export const CUSTOM_SCHEME_NAME: string = "Custom";
+
 // Default color scheme
-export const DEFAULT_COLOR_SCHEME: ColorSchemeDescriptor = {
+export const DEFAULT_CUSTOM_COLOR_SCHEME: ColorSchemeDescriptor = {
   background: "#1a1423",
   color: "#e5be9e",
   backspace: "#b4a6ab",

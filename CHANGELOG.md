@@ -21,7 +21,8 @@
 - Dynamic link list creator/editor:
   - Edit, move up/down links;
   - Export/import links list.
-- Back browser button now goes back to the parent link list if possible
+- Back browser button now goes back to the parent link list if possible.
+- Ability to have defined custom color schemes.
 
 ### Changed
 
@@ -30,4 +31,4 @@
 
 ### Removed
 
-- (temporarily) Search bar and custom colors.
+- (temporarily) Search bar.
