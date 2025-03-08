@@ -11,8 +11,8 @@ export const CUSTOM_COLOR_SCHEME_LOCAL_STORAGE = "customColorScheme";
 
 // Constants for the characters used in the list
 export const LINK_LIST_CHARS = {
-  LINK: " → ", // used for links
-  TREE: " ⊧ ", // used for trees
+  LINK: "→", // used for links
+  TREE: "⊧", // used for trees
   NIL: "●", // used for nodes after the 9th one in a view
 };
 

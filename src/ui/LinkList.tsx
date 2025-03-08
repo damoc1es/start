@@ -95,11 +95,13 @@ export function LinkList({ treeNode }: { treeNode: Node }) {
               {i < 10 ? i : Consts.LINK_LIST_CHARS.NIL}
               {typeof object.data === "string" ? (
                 <>
+                  {" "}
                   {Consts.LINK_LIST_CHARS.LINK}{" "}
                   <a href={object.data}>{object.name}</a>
                 </>
               ) : (
                 <>
+                  {" "}
                   {Consts.LINK_LIST_CHARS.TREE}{" "}
                   <a onClick={() => handleNodeMove(object, i)}>{object.name}</a>
                 </>
